@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+        <ui:define name="metaData">
+            <f:metadata>
+                <f:viewParam name="usuacao" value="#{usuarioBean.acao}"/>
+                <f:viewParam name="usuCod" value="#{usuarioBean.codigo}"/>
+                <f:event listener="#{usuarioBean.carregarCadastro()}" type="preRenderView"/>
+                <f:event listener="#{autenticacaoBean.redirecionarSemLogar()}" type="preRenderView"/>
+                <f:event listener="#{autenticacaoBean.redirecionarSemPermicao()}" type="preRenderView"/>
+                 
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="frmUsCad">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel value="Cadastro de Usuario"/>
+                       
+                    </f:facet>
+                </p:toolbar>
+                <h:panelGrid columns="2" id="pnlUsCadDados">
+                    <p:outputLabel value="Codigo"/>
+                    <p:inputText size="10" readonly="true" value="#{usuarioBean.usuario.codigo}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value="Nome"/>
+                    <p:inputText readonly="#{usuarioBean.acao == 'excluir'}" maxlength="50" size="30" value="#{usuarioBean.usuario.nome}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value="CPF"/>
+                    <p:inputMask readonly="#{usuarioBean.acao == 'excluir'}" id="cpf" mask="999.999.999-99" value="#{usuarioBean.usuario.cpf}">
+                        <f:validateBean/>
+                    </p:inputMask>
+                    <p:outputLabel value="Endereço"/>
+                    <p:inputText readonly="#{usuarioBean.acao == 'excluir'}" maxlength="60" size="30" value="#{usuarioBean.usuario.endereco}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value="Telefone"/>
+                    <p:inputMask readonly="#{usuarioBean.acao == 'excluir'}" id="telefone" mask="(99)9.9999-9999" value="#{usuarioBean.usuario.telefone}">
+                        <f:validateBean/>
+                    </p:inputMask>
+                    <p:outputLabel value="Login"/>
+                    <p:inputText readonly="#{usuarioBean.acao == 'excluir'}" value="#{usuarioBean.usuario.login}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value="Senha"/>
+                    <p:password readonly="#{usuarioBean.acao == 'excluir'}" value="#{usuarioBean.usuario.senha}">
+                        <f:validateBean/>
+                    </p:password>
+                    <p:outputLabel value="Função"/>
+                    <p:selectOneMenu  id="funcao" label="" value="#{usuarioBean.usuario.funcao}">
+                        <f:selectItem itemLabel="Selecione uma Função" itemValue=""/>
+                        <f:selectItem itemLabel="Administrador" itemValue="A"/>
+                        <f:selectItem itemLabel="Cambista" itemValue="C"/>
+                    </p:selectOneMenu>
+                </h:panelGrid> 
+                <h:panelGrid columns="5">
+                    <p:commandButton id="novo" icon="pi pi-user-plus" rendered="#{usuarioBean.acao == 'novo'}" actionListener="#{usuarioBean.novo()}" update=":frmUsCad:pnlUsCadDados"/>
+                    <p:commandButton id="salvar" icon="pi pi-save" rendered="#{usuarioBean.acao == 'novo'}" actionListener="#{usuarioBean.salvar()}" update=":msgGlobal :frmUsCad:pnlUsCadDados" />
+                    <p:commandButton id="editar" icon="pi pi-pencil" rendered="#{usuarioBean.acao == 'editar'}" actionListener="#{usuarioBean.editar()}" update=":msgGlobal"/>
+                    <p:commandButton id="excluir" icon="pi pi-trash" rendered="#{usuarioBean.acao == 'excluir'}" actionListener="#{usuarioBean.excluir()}" update=":msgGlobal :frmUsCad:pnlUsCadDados" />
+                    <p:button id="voltar" icon="pi pi-chevron-left" outcome="/pages/UsuarioPesquisa.xhtml?faces-redirect=true" />
+                    
+
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition> 
+</html>

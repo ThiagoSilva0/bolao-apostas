@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:insert name="metaData"/>
+    <h:head>
+
+        <title>Bolão</title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+
+
+    </h:head>
+    <h:body>
+        <p:growl id="msgGlobal" sticky="true"/>
+
+
+        <p:layout fullPage="true">
+            <p:layoutUnit size="130" position="north" resizable="false" closable="false" collapsible="false" >
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" resizable="false" closable="false" collapsible="false">
+
+            </p:layoutUnit>
+            <p:layoutUnit size="250" position="west" resizable="false" closable="false" collapsible="false">
+                <h:form id="frmMnPrincipal">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" outcome="/Principal.xhtml?gaces-redirect=true"/>
+                    </p:breadCrumb>
+                    <p:panelMenu id="pnlMnPrincipal" >
+
+
+                        <p:submenu label="Login" >
+                            <p:menuitem value="Logar" rendered="#{autenticacaoBean.usuarioLogado.codigo == null}" outcome="/pages/login.xhtml?faces-redirect=true"/>                        
+                            <p:menuitem value="Sair" action="#{autenticacaoBean.sair()}" rendered="#{autenticacaoBean.usuarioLogado.codigo != null}"/>                        
+                        </p:submenu>
+                        <p:submenu id="cadastro" label="Cadastros" rendered="#{autenticacaoBean.usuarioLogado.funcao == 'A'}">
+                            <p:menuitem value="Rodada" outcome="/pages/RodadaPesquisa.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Usuário" outcome="/pages/UsuarioPesquisa.xhtml?faces-redirect=true"/>
+                        </p:submenu>
+
+                        <p:submenu label="Resultados">
+                            <p:menuitem value="Ultimas Rodadas" url="http://www.google.com"/>                        
+                        </p:submenu>
+
+
+                        <p:submenu label="Aposta">
+                            <p:menuitem value="Nova Aposta" outcome="/pages/NovaAposta.xhtml?faces-redirect=true" rendered="#{autenticacaoBean.usuarioLogado.funcao != null}">
+                                <f:param name="apsacao" value="novo"/>
+                            </p:menuitem>
+                            <p:menuitem value="Consultar Aposta" outcome="/pages/ConsultarAposta.xhtml?faces-redirect=true"/>                            
+                        </p:submenu>
+
+                        <p:submenu label="Caixa" rendered="#{autenticacaoBean.usuarioLogado.funcao != null}">
+                            <p:menuitem value="Extrato Cambista" rendered="#{autenticacaoBean.usuarioLogado.funcao == 'A'}" outcome="/pages/ExtratoCambista.xhtml?faces-redirect=true"/>
+                            <p:menuitem value="Relatorio Geral" rendered="#{autenticacaoBean.usuarioLogado.funcao == 'A'}" outcome="/pages/GeralAposta.xhtml?faces-redirect=true"/>
+                            <p:menuitem value="Minhas Apostas" url="http://www.google.com" rendered="#{autenticacaoBean.usuarioLogado.funcao == 'C'}"/>                            
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" resizable="false" closable="false" collapsible="false">
+                <ui:insert name="conteudo"/>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

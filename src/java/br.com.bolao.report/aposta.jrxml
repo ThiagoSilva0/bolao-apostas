@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd9736a5-9dbd-453b-a2f9-ff9db166b5a9">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="205"/>
+	<field name="codigo" class="java.lang.Long"/>
+	<field name="nomeCliente" class="java.lang.String"/>
+	<field name="rodada.codigo" class="java.lang.Long"/>
+	<field name="rodada.preco" class="java.lang.Double"/>
+	<field name="rodada.premio" class="java.lang.Double"/>
+	<field name="dataAposta" class="java.util.Date"/>
+	<field name="jogo1Casa" class="java.lang.String"/>
+	<field name="golCasa1" class="java.lang.String"/>
+	<field name="golVisitante1" class="java.lang.String"/>
+	<field name="jogo1Visitante" class="java.lang.String"/>
+	<field name="dataJogo1" class="java.util.Date"/>
+	<field name="jogo2Casa" class="java.lang.String"/>
+	<field name="jogo2Visitante" class="java.lang.String"/>
+	<field name="golCasa2" class="java.lang.String"/>
+	<field name="golVisitante2" class="java.lang.String"/>
+	<field name="dataJogo2" class="java.util.Date"/>
+	<field name="jogo3Casa" class="java.lang.String"/>
+	<field name="golCasa3" class="java.lang.String"/>
+	<field name="golVisitante3" class="java.lang.String"/>
+	<field name="jogo3Visitante" class="java.lang.String"/>
+	<field name="dataJogo3" class="java.util.Date"/>
+	<field name="jogo4Casa" class="java.lang.String"/>
+	<field name="golCasa4" class="java.lang.String"/>
+	<field name="golVisitante4" class="java.lang.String"/>
+	<field name="jogo4Visitante" class="java.lang.String"/>
+	<field name="dataJogo4" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-34" y="0" width="614" height="31" backcolor="#009900" uuid="ae6f6dcd-f853-4bf9-a2ae-617b9d92df5a"/>
+				<staticText>
+					<reportElement x="217" y="5" width="185" height="26" forecolor="#FFFFFF" uuid="f00be465-54ba-4fd2-b596-452562bcc634"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DADOS APOSTA]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="153" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="111" height="20" uuid="2931ed82-a92f-4ae6-bfb1-08b04c940dc8"/>
+				<text><![CDATA[Código da aposta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="111" height="20" uuid="bbfca28b-c95e-4034-8327-b97d38285926"/>
+				<text><![CDATA[Nome do cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="111" height="20" uuid="4f88afd3-b2d5-45ff-bad7-75b877702537"/>
+				<text><![CDATA[Rodada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="62" width="111" height="20" uuid="e90bbacf-6cb2-45ea-9f64-da7d4c4961a4"/>
+				<text><![CDATA[Preço da aposta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="82" width="111" height="20" uuid="ca49f6a4-1264-4b92-9157-8a5d65a96349"/>
+				<text><![CDATA[Prêmio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="2" width="111" height="20" uuid="da068e41-5f8c-46df-81d6-8ba60b9e3683"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="22" width="111" height="20" uuid="f7d51170-37da-4b03-bf7b-b51f958e8dd1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="42" width="111" height="20" uuid="9dc0694a-8818-4655-8b7c-b556fa9d50f4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{rodada.codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="62" width="111" height="20" uuid="4e8e6d98-98c9-4b44-96e8-37b77abb8d27"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{rodada.preco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="82" width="111" height="20" uuid="06bde475-d7cc-4f43-b339-eaf0b24b135b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{rodada.premio}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="-34" y="122" width="614" height="31" backcolor="#009900" uuid="483ddc9c-e330-4e0e-a5ec-8eeef80f18a9"/>
+				<staticText>
+					<reportElement x="217" y="5" width="185" height="26" forecolor="#FFFFFF" uuid="f73c98f1-b601-455e-a75b-672b664de3af"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[JOGOS]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="444" y="101" width="111" height="20" uuid="a45b766b-f6ee-4679-90e3-382c203c23db"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dataAposta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="101" width="111" height="20" uuid="1370196d-a340-49a3-9c10-2249356358b4"/>
+				<text><![CDATA[Data aposta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="61" height="20" uuid="8fc4f922-9259-43de-8455-62f786a4f21f"/>
+				<text><![CDATA[JOGO 1]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="f0dfe01c-d59a-41e3-89da-d277a77f5c8d"/>
+			</line>
+			<textField>
+				<reportElement x="136" y="11" width="100" height="20" uuid="479c79c3-13ca-49bf-81a9-51f2ceb3de20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{jogo1Casa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="262" y="4" width="25" height="28" uuid="e5500b97-2fb8-453b-b8a2-0bdd74b9f1b8"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="236" y="11" width="26" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="53ec8b19-b7c4-4767-bee1-7c11669875c2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golCasa1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="286" y="11" width="26" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f26a1d8b-57c8-44c8-bb4c-f1971a5a5167"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golVisitante1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="11" width="100" height="20" uuid="52d92b53-b134-485b-b6f0-6e6ed288f349"/>
+				<textFieldExpression><![CDATA[$F{jogo1Visitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="10" width="74" height="20" uuid="1f6d6cd9-ebf5-48f2-ac6a-b7c3fcd9a481"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dataJogo1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="34" width="61" height="20" uuid="89f213ae-6728-4c39-9086-a8a09ba0998e"/>
+				<text><![CDATA[JOGO 2]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="53" width="555" height="1" uuid="9ea2851e-daca-44df-b5d5-4a64ac8259e3"/>
+			</line>
+			<staticText>
+				<reportElement x="262" y="32" width="25" height="28" uuid="8f6ed919-1927-4793-becb-bc61d646038b"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="39" width="100" height="20" uuid="3897a414-eb5c-45cf-a4d7-99e46532ea4f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{jogo2Casa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="39" width="100" height="20" uuid="e77b5cf0-0f45-45c3-99ad-8e1408322185"/>
+				<textFieldExpression><![CDATA[$F{jogo2Visitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="236" y="39" width="26" height="20" uuid="97f703c3-9461-49ba-b773-4c3b054c244d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golCasa2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="286" y="39" width="26" height="20" uuid="d8487d56-642a-4429-9ed3-f5d8e4f3418b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golVisitante2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="39" width="74" height="20" uuid="163e4b90-e7ea-419f-8782-ba5b304d721e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dataJogo2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="63" width="61" height="20" uuid="88035326-ff1f-4d65-ad92-447d62d79684"/>
+				<text><![CDATA[JOGO 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="60" width="25" height="28" uuid="ef6ec138-b3b7-4161-8d95-61202579b477"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="82" width="555" height="1" uuid="968065de-4ab5-48a5-ab39-eeddee7d9477"/>
+			</line>
+			<textField>
+				<reportElement x="136" y="66" width="100" height="20" uuid="fe7b7c92-4b3c-43a6-b1b7-277f3e3f195a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{jogo3Casa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="67" width="26" height="20" uuid="d1c2b794-6695-4ced-898c-aa2736fa9dbf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golCasa3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="67" width="26" height="20" uuid="5f81038d-7612-4b0b-9838-63dd7831cb8e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golVisitante3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="66" width="101" height="20" uuid="70fdc7d3-4ccc-4318-8732-8a9c84734dc2"/>
+				<textFieldExpression><![CDATA[$F{jogo3Visitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="68" width="74" height="20" uuid="6c461096-fd9e-455f-8cf7-c1dfd3fb4025"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dataJogo3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="91" width="61" height="20" uuid="a04dc747-bcb6-4832-adb7-a78e191e59ff"/>
+				<text><![CDATA[JOGO 4]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="110" width="555" height="1" uuid="41821629-2f6f-4aef-9204-d974067316bb"/>
+			</line>
+			<staticText>
+				<reportElement x="262" y="88" width="25" height="28" uuid="852ab639-055a-4fbb-b373-b4d271b99ff9"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="94" width="100" height="20" uuid="edee1b8e-9df2-42d8-8713-551070ca2510"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{jogo4Casa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="95" width="26" height="20" uuid="0cabf610-f680-4087-a731-2a85b9469dc7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golCasa4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="95" width="25" height="20" uuid="574e34cc-37f7-4247-9832-41d140cae2f5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{golVisitante4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="94" width="100" height="20" uuid="a7f8212a-4a8a-45c8-9287-740d7051a59c"/>
+				<textFieldExpression><![CDATA[$F{jogo4Visitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="96" width="74" height="20" uuid="7550ccf6-9b8d-478a-a5dc-9524193293a9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dataJogo4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

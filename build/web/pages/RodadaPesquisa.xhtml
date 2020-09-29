@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+        <ui:define name="metaData">
+            <f:metadata>
+                <f:event listener="#{rodadaBean.listar()}" type="preRenderView"/>
+                <f:event listener="#{rodadaBean.atualizarSituacao()}" type="preRenderView"/>
+                <f:event listener="#{autenticacaoBean.redirecionarSemLogar()}" type="preRenderView"/>
+            </f:metadata>
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:form>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel value="Rodadas                     "/>
+                        <p:button id="novo" icon="pi pi-user-plus" outcome="/pages/RodadaCadastro.xhtml?faces-redirect=true">
+                            <f:param name="rodacao" value="novo"/>
+                        </p:button>
+                    </f:facet>
+
+
+                </p:toolbar>
+
+                <p:accordionPanel value="#{rodadaBean.listaRodadas}" var="rodada">
+
+                    <p:tab title="Rodada: #{rodada.codigo}" >
+
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Codigo: "/>   
+                            <h:outputText value="#{rodada.codigo}"/>
+
+                            <p:outputLabel value="Data da criação: "/>   
+                            <h:outputText value="#{rodada.data_criacao}"/>
+
+                            <p:outputLabel value="Encerramento: "/>   
+                            <h:outputText value="#{rodada.data_encerramento}"/>
+
+                            <p:outputLabel value="Prêmio R$: "/>
+                            <h:outputText value="#{rodada.premio}"/>
+
+
+                            <p:outputLabel value="Preço da aposta R$: "/>
+                            <h:outputText value="#{rodada.preco}"/>
+
+                            <p:outputLabel value="Situação: "/>   
+                            <h:outputText value="#{rodada.situacao == 'e' ? 'Encerrada':'Aberta'}"/>
+                        </p:panelGrid>
+                        <h3>JOGOS</h3>
+                       
+                        <p:panelGrid columns="5" >
+                            <p:outputLabel value="Jogo 1: "/>
+                            <p:outputLabel value="#{rodada.jogo1Casa}"/> 
+                            <p:outputLabel value=" x "/>   
+                            <p:outputLabel value="#{rodada.jogo1Visitante}"/> 
+                            <p:outputLabel value="    Horario: #{rodada.dataJogo1}"/>   
+
+                            <p:outputLabel value="Jogo 2: "/>
+                            <p:outputLabel value="#{rodada.jogo2Casa}"/> 
+                            <p:outputLabel value=" x "/>   
+                            <p:outputLabel value="#{rodada.jogo2Visitante}"/> 
+                            <p:outputLabel value="    Horario: #{rodada.dataJogo2}"/>   
+
+                            <p:outputLabel value="Jogo 3: "/>
+                            <p:outputLabel value="#{rodada.jogo3Casa}"/> 
+                            <p:outputLabel value=" x "/>   
+                            <p:outputLabel value="#{rodada.jogo3Visitante}"/> 
+                            <p:outputLabel value="    Horario: #{rodada.dataJogo3}"/>   
+
+                            <p:outputLabel value="Jogo 4: "/>
+                            <p:outputLabel value="#{rodada.jogo4Casa}"/> 
+                            <p:outputLabel value=" x "/>   
+                            <p:outputLabel value="#{rodada.jogo4Visitante}"/> 
+                            <p:outputLabel value="    Horario: #{rodada.dataJogo4}"/>   
+                        </p:panelGrid>
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:button id="excluir" icon="pi pi-trash" outcome="/pages/RodadaCadastro.xhtml?faces-redirect=true">
+                                    <f:param name="rodcod" value="#{rodada.codigo}"/>
+                                    <f:param name="rodacao" value="excluir"/>
+                                </p:button>
+                                <p:commandButton value="relatorio" action="#{testeMB.gerarRelatorio(rodada.codigo)}" ajax="false" onclick="this.form.target = '_blank'"/>
+
+                                <p:button id="editar" icon="pi pi-pencil" outcome="/pages/RodadaCadastro.xhtml?faces-redirect=true">
+                                    <f:param name="rodcod" value="#{rodada.codigo}"/>
+                                    <f:param name="rodacao" value="editar"/>
+                                </p:button>
+                            </f:facet>
+                        </p:toolbar>
+                    </p:tab>
+                </p:accordionPanel>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

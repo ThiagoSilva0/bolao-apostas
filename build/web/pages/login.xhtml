@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+
+
+
+
+        <ui:define name="conteudo">
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:outputLabel value="Login"/>
+                </f:facet>
+            </p:toolbar>
+            
+                <h:form id="frmAut">
+                    <h:panelGrid id="pnlAut" columns="2">
+                        <p:outputLabel value="Login" rendered="#{autenticacaoBean.usuarioLogado.codigo == null }"/>
+                        <p:inputText value="#{autenticacaoBean.usuarioLogado.login}" rendered="#{autenticacaoBean.usuarioLogado.codigo == null }" >
+                            <f:validateBean/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Senha" rendered="#{autenticacaoBean.usuarioLogado.codigo == null }"/>
+                        <p:password value="#{autenticacaoBean.usuarioLogado.senha}" rendered="#{autenticacaoBean.usuarioLogado.codigo == null }">
+                            <f:validateBean/>
+                        </p:password>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Acessar" action="#{autenticacaoBean.autenticar()}" update=":msgGlobal :frmMnPrincipal:pnlMnPrincipal"  rendered="#{autenticacaoBean.usuarioLogado.codigo == null }"/>  
+                    </h:panelGrid>
+                </h:form>
+
+
+          
+
+        </ui:define>
+    </ui:composition>
+</html>
+

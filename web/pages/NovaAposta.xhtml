@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+        <ui:define name="metaData">
+            <f:metadata>
+                <f:viewParam name="apsacao" value="#{apostaBean.acao}"/>
+                <f:event listener="#{apostaBean.carregarRodada()}" type="preRenderView"/>
+                <f:event listener="#{apostaBean.carregarAposta()}" type="preRenderView"/>
+                <f:event listener="#{autenticacaoBean.redirecionarSemLogar()}" type="preRenderView"/>
+                <f:event listener="#{rodadaBean.atualizarSituacao()}" type="preRenderView"/>
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="frmAposta">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel value="Rodada #{apostaBean.rodada.codigo}"/>
+                    </f:facet>
+                </p:toolbar>
+
+
+
+
+
+
+                <p:panelGrid id="pnlAposta" columns="7" style="margin-top: 1%" >
+
+                    <p:outputLabel value="JOGO 1"/> 
+
+                    <p:outputLabel value="#{apostaBean.rodada.jogo1Casa}"  />
+                    <p:inputText value="#{apostaBean.aposta.golCasa1}" size="1"/>
+                    <p:outputLabel value=" x "/>
+                    <p:inputText value="#{apostaBean.aposta.golVisitante1}" size="1"/>
+                    <p:outputLabel value="#{apostaBean.rodada.jogo1Visitante}"/>
+                    <p:outputLabel value="#{apostaBean.rodada.dataJogo1}" >
+                        <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="JOGO 2"/> 
+
+                    <p:outputLabel value="#{apostaBean.rodada.jogo2Casa}" />
+                    <p:inputText value="#{apostaBean.aposta.golCasa2}" size="1"/>
+                    <p:outputLabel value=" x "/>
+                    <p:inputText value="#{apostaBean.aposta.golVisitante2}" size="1"/>
+                    <p:outputLabel value="#{apostaBean.rodada.jogo2Visitante}"/>
+                    <p:outputLabel value="#{apostaBean.rodada.dataJogo2}" >
+                        <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+
+
+                    <p:outputLabel value="JOGO 3"/> 
+
+                    <p:outputLabel value="#{apostaBean.rodada.jogo3Casa}" />
+                    <p:inputText value="#{apostaBean.aposta.golCasa3}" size="1"/>
+                    <p:outputLabel value=" x "/>
+                    <p:inputText value="#{apostaBean.aposta.golVisitante3}" size="1"/>
+                    <p:outputLabel value="#{apostaBean.rodada.jogo3Visitante}"/>
+                    <p:outputLabel value="#{apostaBean.rodada.dataJogo3}" >
+                        <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="JOGO 4"/> 
+
+                    <p:outputLabel value="#{apostaBean.rodada.jogo4Casa}" />
+                    <p:inputText value="#{apostaBean.aposta.golCasa4}" size="1"/>
+                    <p:outputLabel value=" x "/>
+                    <p:inputText value="#{apostaBean.aposta.golVisitante4}" size="1"/>
+                    <p:outputLabel value="#{apostaBean.rodada.jogo4Visitante}"/>
+                    <p:outputLabel value="#{apostaBean.rodada.dataJogo4}" >
+                        <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                    </p:outputLabel>
+                </p:panelGrid>
+                <h:panelGrid id="pnlDdCli" columns="2">
+                    <p:outputLabel value="Nome Cliente" />
+                    <p:inputText value="#{apostaBean.aposta.nomeCliente}" />
+
+                    <p:outputLabel value="Telefone Cliente" />
+                    <p:inputMask mask="(99)9.9999-9999" value="#{apostaBean.aposta.telefoneCliente}" />
+
+                    <p:outputLabel value="Valor da Aposta" />
+                    <p:outputLabel value="#{apostaBean.rodada.preco}"/>                 
+
+                    <p:outputLabel value="Prêmio" />
+                    <p:outputLabel value="#{apostaBean.rodada.premio}"/>
+                </h:panelGrid>
+                <h:panelGrid columns="5">
+                    <p:commandButton id="novo" icon="pi pi-user-plus" rendered="#{apostaBean.acao == 'novo'}" actionListener="#{rodadaBean.novo()}" update=":msgGlobal :frmAposta:pnlAposta :frmAposta:pnlDdCli" />
+                    <p:commandButton id="salvar" icon="pi pi-save" rendered="#{apostaBean.acao == 'novo'}" 
+                                     actionListener="#{apostaBean.salvar()}" action="#{apostaBean.imprimir()}" update=":msgGlobal :frmAposta:pnlAposta :frmAposta:pnlDdCli" ajax="false" onclick="this.form.target='_blank'"/>
+                    
+                    
+                    
+                    <!--<p:commandButton id="editar" icon="pi pi-pencil" rendered="#{apostaBean.acao == 'editar'}" actionListener="#{apostaBean}" />-->
+                    
+                    <!--<p:commandButton id="excluir" icon="pi pi-trash" rendered="#{apostaBean.acao == 'excluir'}" actionListener="#{apostaBean}"/>-->
+                    <p:button id="voltar" icon="pi pi-chevron-left"  outcome="/Principal.xhtml?faces-redirect=true"/>
+                </h:panelGrid>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

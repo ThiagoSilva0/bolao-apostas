@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+        <ui:define name="metaData">
+            <f:metadata>
+                <!--                <f:event  type="preRenderView"/>-->
+
+            </f:metadata>
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:form>
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel value="Consultar Aposta"/>
+                    </f:facet>
+                </p:toolbar>
+
+            </h:form>
+            <h:form id="frmConAps">
+                <h:panelGrid columns="4">
+                    <p:outputLabel value="Codigo"/>
+                    <p:inputText value="#{consultaApostaBean.coigoAposta}"/>
+                    <p:commandButton id="consulta" icon="pi pi-search" actionListener="#{consultaApostaBean.buscarAposta()}" update=":msgGlobal :frmConAps:cnsAposta :frmConAps:ddCliente"/>
+                    <p:commandButton id="imprimir" icon="pi pi-print" action="#{consultaApostaBean.imprimir()}" ajax="false" onclick="this.form.target = '_blank'"/>
+                </h:panelGrid>
+                
+                <p:panelGrid id="cnsAposta" columns="7" style="margin-top: 1%" >
+
+                
+                 <p:outputLabel value="JOGO 1"/> 
+
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo1Casa == null ? '': consultaApostaBean.aposta.jogo1Casa}"  />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golCasa1 == null ? '':consultaApostaBean.aposta.golCasa1}" />
+                        <p:outputLabel value=" x "/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golVisitante1 == null ? '':consultaApostaBean.aposta.golVisitante1}"/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo1Visitante == null ? '':consultaApostaBean.aposta.jogo1Visitante}"/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.dataJogo1 == null ? '':consultaApostaBean.aposta.dataJogo1}" >
+                            <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="JOGO 2"/> 
+
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo2Casa == null ? '':consultaApostaBean.aposta.jogo2Casa}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golCasa2 == null ? '':consultaApostaBean.aposta.golCasa2}" />
+                        <p:outputLabel value=" x "/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golVisitante2 == null ? '':consultaApostaBean.aposta.golVisitante2}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo2Visitante == null ? '':consultaApostaBean.aposta.jogo2Visitante}"/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.dataJogo2 == null ? '':consultaApostaBean.aposta.dataJogo2}" >
+                            <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                        </p:outputLabel>
+
+
+
+                        <p:outputLabel value="JOGO 3"/> 
+
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo3Casa == null ? '':consultaApostaBean.aposta.jogo3Casa}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golCasa3 == null ? '':consultaApostaBean.aposta.golCasa3}" />
+                        <p:outputLabel value=" x "/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golVisitante3 == null ? '':consultaApostaBean.aposta.golVisitante3}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo3Visitante == null ? '':consultaApostaBean.aposta.jogo3Visitante}"/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.dataJogo3 == null ? '':consultaApostaBean.aposta.dataJogo3}" >
+                            <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="JOGO 4"/> 
+
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo4Casa == null ? '':consultaApostaBean.aposta.jogo4Casa}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golCasa4 == null ? '':consultaApostaBean.aposta.golCasa4}" />
+                        <p:outputLabel value=" x "/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.golVisitante4 == null ? '':consultaApostaBean.aposta.golVisitante4}" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.jogo4Visitante == null ? '':consultaApostaBean.aposta.jogo4Visitante}"/>
+                        <p:outputLabel value="#{consultaApostaBean.aposta.dataJogo4 == null ? '':consultaApostaBean.aposta.dataJogo4}" >
+                            <f:convertDateTime pattern="HH:mm dd/MM/yyyy"/>
+                        </p:outputLabel>
+
+                    </p:panelGrid>
+                <h:panelGrid id="ddCliente" columns="2">
+                        <p:outputLabel value="Nome Cliente:" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.nomeCliente == null ? '':consultaApostaBean.aposta.nomeCliente}" />
+
+                        <p:outputLabel value="Telefone Cliente" />
+                        <p:outputLabel value="#{consultaApostaBean.aposta.telefoneCliente == null ? '':consultaApostaBean.aposta.telefoneCliente}" />
+
+                        <p:outputLabel value="Valor da Aposta" />
+                        <p:outputLabel value="#{consultaApostaBean.rodada.preco == null ? '':consultaApostaBean.rodada.preco}"/>                 
+
+                        <p:outputLabel value="Prêmio" />
+                        <p:outputLabel value="#{consultaApostaBean.rodada.premio == null ? '':consultaApostaBean.rodada.premio}"/>
+
+                        <p:outputLabel value="Rodada" />
+                        <p:outputLabel value="#{consultaApostaBean.rodada.codigo == null ? '':consultaApostaBean.rodada.codigo}"/>
+                    </h:panelGrid>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+

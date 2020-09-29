@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/templates/modeloGeral.xhtml">
+        <ui:define name="metaData">
+            <f:metadata>
+                <f:viewParam name="rodcod" value="#{rodadaBean.codigo}"/>
+                <f:viewParam name="rodacao" value="#{rodadaBean.acao}"/>
+                <f:event listener="#{rodadaBean.carregarCadastro()}" type="preRenderView"/>
+                <f:event listener="#{autenticacaoBean.redirecionarSemLogar()}" type="preRenderView"/>
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="frmRdCad">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel value="Cadastro Rodada"/>
+                    </f:facet>
+                </p:toolbar>
+
+                <h:panelGrid columns="2" id="pnlRodCad">
+                    <p:outputLabel value="Código"/>
+                    <p:inputText readonly="true" size="10" value="#{rodadaBean.rodada.codigo}">
+                        <f:validateBean/>
+                    </p:inputText>
+
+                    <p:outputLabel for="datetime" value="Data e Hora do encerramento" />
+                    <p:calendar id="datetime" readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.data_encerramento}" pattern="dd/MM/yyyy HH:mm" >
+                        <f:validateBean/>
+                    </p:calendar>
+
+
+                    <p:outputLabel value="Valor do Prêmio"/>
+                    <p:inputNumber size="10" readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.premio}">
+                        <f:validateBean/>
+                    </p:inputNumber>
+
+                    <p:outputLabel value="Valor fixo da aposta"/>
+                    <p:inputNumber size="10" readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.preco}">
+                        <f:validateBean/>
+                    </p:inputNumber>
+
+
+
+                    <p:outputLabel value="Situação da rodada"/>
+                    <p:selectOneMenu label="" value="#{rodadaBean.rodada.situacao}">
+                        <f:selectItem itemLabel="Selecione uma Situação" itemValue=""/>
+                        <f:selectItem itemLabel="Aberta" itemValue="a"/> 
+                        <f:selectItem itemLabel="Encerrada" itemValue="e"/> 
+                        <f:validateBean/>
+                    </p:selectOneMenu>
+                </h:panelGrid> 
+                <h2>Jogos da Rodada</h2>
+                <h:panelGrid columns="6" id="pnlJgRd">
+                    <p:outputLabel value="JOGO 1"/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo1Casa}"> 
+                        <f:validateBean/>
+                    </p:inputText>  
+                    <p:outputLabel value=" x "/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo1Visitante}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value=" Horario :"/>
+                    <p:calendar readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.dataJogo1}" pattern="dd/MM/yyyy HH:mm" >
+                        <f:validateBean/>
+                    </p:calendar>
+
+                    <p:outputLabel value="JOGO 2"/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo2Casa}">
+                        <f:validateBean/>
+                    </p:inputText>  
+                    <p:outputLabel value=" x "/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo2Visitante}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value=" Horario :"/>
+                    <p:calendar readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.dataJogo2}" pattern="dd/MM/yyyy HH:mm" >
+                        <f:validateBean/>
+                    </p:calendar>
+
+                    <p:outputLabel value="JOGO 3"/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo3Casa}">
+                        <f:validateBean/>
+                    </p:inputText>  
+                    <p:outputLabel value=" x "/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo3Visitante}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value=" Horario :"/>
+                    <p:calendar readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.dataJogo3}" pattern="dd/MM/yyyy HH:mm" >
+                        <f:validateBean/>
+                    </p:calendar>
+
+                    <p:outputLabel value="JOGO 4"/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo4Casa}">
+                        <f:validateBean/>
+                    </p:inputText>  
+                    <p:outputLabel value=" x "/>  
+                    <p:inputText value="#{rodadaBean.rodada.jogo4Visitante}">
+                        <f:validateBean/>
+                    </p:inputText>
+                    <p:outputLabel value=" Horario :"/>
+                    <p:calendar readonly="#{rodadaBean.acao == 'excluir'}" value="#{rodadaBean.rodada.dataJogo4}" pattern="dd/MM/yyyy HH:mm" >
+                        <f:validateBean/>
+                    </p:calendar>
+
+                </h:panelGrid>
+                <h:panelGrid columns="5">
+                    <p:commandButton id="novo" icon="pi pi-user-plus" rendered="#{rodadaBean.acao == 'novo'}" actionListener="#{rodadaBean.novo()}" update=":frmRdCad:pnlRodCad :frmRdCad:pnlJgRd"/>
+                    <p:commandButton id="salvar" icon="pi pi-save" rendered="#{rodadaBean.acao == 'novo'}" actionListener="#{rodadaBean.salvar()}" update=":msgGlobal :frmRdCad:pnlRodCad :frmRdCad:pnlJgRd" />
+                    <p:commandButton id="editar" icon="pi pi-pencil" rendered="#{rodadaBean.acao == 'editar'}" actionListener="#{rodadaBean.editar()}" update=":msgGlobal :frmRdCad:pnlRodCad :frmRdCad:pnlJgRd"/>
+                    <p:commandButton id="excluir" icon="pi pi-trash" rendered="#{rodadaBean.acao == 'excluir'}" actionListener="#{rodadaBean.excluir()}" update=":msgGlobal :frmRdCad:pnlRodCad :frmRdCad:pnlJgRd"/>
+                    <p:button id="voltar" icon="pi pi-chevron-left"  outcome="/pages/RodadaPesquisa.xhtml?faces-redirect=true"/>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
